@@ -8,7 +8,7 @@ exports.placeOrder = async (req, res) => {
   const { ecoDelivery = false, couponCode = null } = req.body;
   try {
     const cart = await Cart.findOne({ user: req.user._id });
-    if (!cart || cart.items.length === 0) {
+    if (cart.items.length === 0) {
       return res.status(400).json({ message: 'Cart is empty' });
     }
 
